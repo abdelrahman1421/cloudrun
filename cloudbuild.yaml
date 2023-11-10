@@ -6,7 +6,6 @@ steps:
       - echo $body
       - body=$1
       - echo $body
-
     id: echo
     entrypoint: bash
   - name: gcr.io/google.com/cloudsdktool/cloud-sdk
@@ -19,7 +18,3 @@ steps:
     id: pubsub
     entrypoint: gcloud
 logsBucket: 'gs://proud-gate-400110-logging'
-options:
-  substitutionOption: ALLOW_LOOSE
-  env:
-    - REPO=$_REPOSITERY
