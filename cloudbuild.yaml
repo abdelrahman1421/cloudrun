@@ -27,7 +27,7 @@ steps:
     
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
-  _REGION: $(body.assignees_url)
+  _REGION: $(body)
 
 options:
   substitution_option: ALLOW_LOOSE
