@@ -38,6 +38,7 @@ logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
   _ACTION: $(body.action)
   _PRNUMBER: $(body.number)
+  _PYALOAD: $(body.payload)
 
 options:
   substitution_option: ALLOW_LOOSE
