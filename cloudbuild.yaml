@@ -18,9 +18,6 @@ steps:
        echo $_PRNUMBER
        echo "###############################"
        echo "###############################"
-       echo $_PYALOAD
-       echo "###############################"
-       echo "###############################"
        echo $_SHNUM
        echo "###############################"
        
@@ -38,7 +35,6 @@ logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
   _ACTION: $(body.action)
   _PRNUMBER: $(body.number)
-  _PYALOAD: $(body.pull_request)
   _SHNUM: $(body.pull_request.head.sha)
 
 options:
