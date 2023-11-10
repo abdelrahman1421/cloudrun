@@ -13,7 +13,7 @@ steps:
      - '-c'
      - |
        echo "GitHub Webhook Payload:"
-       echo $BUILD_SUBSTITUTIONS
+       echo $PR_NUMBER
   # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
   #   args:
   #     - pubsub
