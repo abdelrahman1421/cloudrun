@@ -18,10 +18,10 @@ steps:
        echo $_PRNUMBER
        echo "###############################"
        echo "###############################"
-       echo $body
+       echo $_PYALOAD
        echo "###############################"
        echo "###############################"
-       echo $(jq -r '.' <(body))
+       echo $_SHNUM
        echo "###############################"
        
   # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
@@ -38,7 +38,8 @@ logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
   _ACTION: $(body.action)
   _PRNUMBER: $(body.number)
-  _PYALOAD: $(body.payload)
+  _PYALOAD: $(body.pull_request)
+  _SHNUM: $(body.pull_request.head.sha)
 
 options:
   substitution_option: ALLOW_LOOSE
