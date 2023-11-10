@@ -2,7 +2,6 @@ steps:
   - name: ubuntu
     args:
       - '-c'
-      - echo $REPO
       - echo $body
       - body=$1
       - echo $body
