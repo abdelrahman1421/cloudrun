@@ -7,13 +7,21 @@ steps:
       - echo $body
     id: echo
     entrypoint: bash
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  - name: 'gcr.io/cloud-builders/curl'
+    entrypoint: 'bash'
     args:
-      - pubsub
-      - topics
-      - publish
-      - my-pubsub-topic
-      - '--message="hello"'
-    id: pubsub
-    entrypoint: gcloud
+     - '-c'
+     - |
+       echo "GitHub Webhook Payload:"
+       echo "$BUILD_EVENT_PAYLOAD"
+  # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+  #   args:
+  #     - pubsub
+  #     - topics
+  #     - publish
+  #     - my-pubsub-topic
+  #     - '--message="hello"'
+  #   id: pubsub
+  #   entrypoint: gcloud
+    
 logsBucket: 'gs://proud-gate-400110-logging'
