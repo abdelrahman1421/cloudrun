@@ -25,3 +25,5 @@ steps:
   #   entrypoint: gcloud
     
 logsBucket: 'gs://proud-gate-400110-logging'
+
+
