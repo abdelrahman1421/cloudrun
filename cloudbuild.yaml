@@ -2,10 +2,7 @@ steps:
   - name: ubuntu
     args:
       - '-c'
-      - echo $body
-      - body=$1
-      - echo $body
-      - echo $_REGION
+      - echo $_BODY
     id: echo
     entrypoint: bash
   - name: 'gcr.io/cloud-builders/curl'
@@ -27,7 +24,7 @@ steps:
     
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
-  _REGION: $(body)
+  _BODY: $(body)
 
 options:
   substitution_option: ALLOW_LOOSE
