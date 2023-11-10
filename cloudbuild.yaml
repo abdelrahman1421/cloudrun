@@ -21,8 +21,9 @@ steps:
        echo $body
        echo "###############################"
        echo "###############################"
-       echo $(body)
+       echo $(jq -r '.' <(body))
        echo "###############################"
+       
   # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
   #   args:
   #     - pubsub
