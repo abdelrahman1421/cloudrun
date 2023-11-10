@@ -17,6 +17,12 @@ steps:
        echo "###############################"
        echo $_PRNUMBER
        echo "###############################"
+       echo "###############################"
+       echo $body
+       echo "###############################"
+       echo "###############################"
+       echo $(body)
+       echo "###############################"
   # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
   #   args:
   #     - pubsub
