@@ -5,6 +5,7 @@ steps:
       - echo $body
       - body=$1
       - echo $body
+      - echo $_REGION
     id: echo
     entrypoint: bash
   - name: 'gcr.io/cloud-builders/curl'
@@ -25,5 +26,9 @@ steps:
   #   entrypoint: gcloud
     
 logsBucket: 'gs://proud-gate-400110-logging'
+substitutions:
+  _REGION: $(body.payload)
 
+options:
+  substitution_option: ALLOW_LOOSE
 
