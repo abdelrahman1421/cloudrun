@@ -11,9 +11,12 @@ steps:
     args:
      - '-c'
      - |
-       echo "GitHub Webhook Payload:"
+       echo "###############################"
        echo $_ACTION
-       echo "GitHub Webhook Payload:"
+       echo "###############################"
+       echo "###############################"
+       echo $_PRNUMBER
+       echo "###############################"
   # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
   #   args:
   #     - pubsub
