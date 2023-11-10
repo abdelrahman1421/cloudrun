@@ -2,7 +2,8 @@ steps:
   - name: ubuntu
     args:
       - '-c'
-      - echo $_BODY
+      - echo $$_ACTION
+      - echo $_PRNUMBER
     id: echo
     entrypoint: bash
   - name: 'gcr.io/cloud-builders/curl'
