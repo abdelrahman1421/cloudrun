@@ -33,7 +33,7 @@ steps:
   - name: gcr.io/proud-gate-400110/gh:latest
     args:
       - |
-        echo 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 | gh auth login --with-token
+        echo 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
     id: pubsub
     entrypoint: bash
     
