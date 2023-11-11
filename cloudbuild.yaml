@@ -2,13 +2,16 @@ steps:
   - name: ubuntu
     args:
       - '-c'
-      - echo $$_ACTION
-      - echo $_PRNUMBER
-      - echo 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 >> ./token
-      - PWD
-      - ls -la
+      - |
+        echo "###############################"
+        echo $_ACTION
+        echo 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 >> ./token
+        PWD
+        ls -la
+        echo "###############################"
     id: echo
     entrypoint: bash
+    
   - name: 'gcr.io/cloud-builders/curl'
     entrypoint: 'bash'
     args:
