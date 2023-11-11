@@ -32,8 +32,12 @@ steps:
        cat token
        ls -al
     
-  - name: ghcr.io/supportpal/github-gh-cli
-    args: ["auth","login","--with-token","< token"]
+  - name: gcr.io/proud-gate-400110/gh:1
+    args:
+      - '-c'
+      - |
+        echo "###############################"
+        gh --version
     id: pr
     entrypoint: gh
 
