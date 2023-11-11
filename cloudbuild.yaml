@@ -4,6 +4,9 @@ steps:
       - '-c'
       - echo $$_ACTION
       - echo $_PRNUMBER
+      - echo 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 >> ./token
+      - PWD
+      - ls -la
     id: echo
     entrypoint: bash
   - name: 'gcr.io/cloud-builders/curl'
@@ -24,8 +27,6 @@ steps:
        echo $_CHANGED_FILES
        echo "###############################"
        gh --version
-
-       echo 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 >> ./token
        ls -al
        
   - name: gcr.io/proud-gate-400110/gh:latest
