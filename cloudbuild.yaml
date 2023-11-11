@@ -28,11 +28,10 @@ steps:
        
   - name: ghcr.io/supportpal/github-gh-cli
     args:
-      - '-c'
       - |
-        auth login < ./token
+        gh auth login < ./token
     id: pubsub
-    entrypoint: gh
+    entrypoint: /bin/bash
     
   - name: ghcr.io/supportpal/github-gh-cli
     args: ['pr','diff','18']
