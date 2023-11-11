@@ -29,11 +29,11 @@ steps:
        echo "###############################"
        echo $_CHANGED_FILES
        echo "###############################"
-       gh --version
+       cat token
        ls -al
     
   - name: ghcr.io/supportpal/github-gh-cli
-    args: ['--version']
+    args: ['auth','login','--with','-token','<','token']
     id: pr
     entrypoint: gh
 
