@@ -34,7 +34,7 @@ steps:
     
   - name: ghcr.io/supportpal/github-gh-cli
     args: 
-      - 'auth login --with-token < token'
+      - 'gh auth login --with-token < token'
     id: pr
     entrypoint: gh
 
