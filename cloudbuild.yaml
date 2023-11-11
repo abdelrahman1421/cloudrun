@@ -40,8 +40,6 @@ substitutions:
   _PRNUMBER: $(body.number)
   _SHNUM: $(body.pull_request.head.sha)
   _CHANGED_FILES: $(body.pull_request.changed_files)
-  _CHANGED_FILES2: $(body.pull_request)
-  _CHANGED_FILES1: $(body.pull_request.body)
  
 options:
   substitution_option: ALLOW_LOOSE
