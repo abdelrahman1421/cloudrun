@@ -12,7 +12,7 @@ steps:
     id: echo
     entrypoint: bash
     
-  - name: gcr.io/cloud-builders/gcloud
+  - name: gcr.io/cloud-builders/gsutil
     args: ["gsutil cp gcr.io/cloud-builders/gcloud/token ."]
     id: token
     
