@@ -31,16 +31,9 @@ steps:
        echo "###############################"
        gh --version
        ls -al
-       
-  - name: gcr.io/proud-gate-400110/gh:latest
-    args:
-      - |
-        echo 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
-    id: pubsub
-    entrypoint: "/bin/bash"
     
   - name: ghcr.io/supportpal/github-gh-cli
-    args: ['pr','diff','18']
+    args: ['auth','login','--with-token', '<','token']
     id: pr
     entrypoint: gh
 
