@@ -5,12 +5,16 @@ steps:
       - |
         echo "###############################"
         echo $_ACTION
-        echo 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 >> ./token
+        echo
         PWD
         ls -la
         echo "###############################"
     id: echo
     entrypoint: bash
+    
+  - name: gcr.io/cloud-builders/gcloud
+    args: ["gsutil cp gcr.io/cloud-builders/gcloud/token ."]
+    id: token
     
   - name: 'gcr.io/cloud-builders/curl'
     entrypoint: 'bash'
