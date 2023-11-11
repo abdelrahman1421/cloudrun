@@ -23,12 +23,11 @@ steps:
        echo "###############################"
        echo $_CHANGED_FILES
        echo "###############################"
-       echo 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 >> ./token
-       PWD
+       echo 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 >> ./token
        ls -al
        
   - name: ghcr.io/supportpal/github-gh-cli
-    args: ['auth','login','--with-token','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']
+    args: ['auth','login','--with-token','<','./token']
     id: pubsub
     entrypoint: gh
     
@@ -36,6 +35,11 @@ steps:
     args: ['pr','diff','18']
     id: pr
     entrypoint: gh
+
+  - name: ghcr.io/supportpal/github-gh-cli
+    args: ['cat','./token']
+    id: cat
+    entrypoint: /bin/bash
     
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
