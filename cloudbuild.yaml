@@ -39,7 +39,7 @@ substitutions:
   _ACTION: $(body.action)
   _PRNUMBER: $(body.number)
   _SHNUM: $(body.pull_request.head.sha)
-  _CHANGED_FILES: $(body.pull_request.diff_url)
+  _CHANGED_FILES: $(body.pull_request.changed_files)
  
 options:
   substitution_option: ALLOW_LOOSE
