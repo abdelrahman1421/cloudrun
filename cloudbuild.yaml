@@ -33,11 +33,7 @@ steps:
        ls -al
     
   - name: gcr.io/proud-gate-400110/gh:1
-    args:
-      - '-c'
-      - |
-        echo "###############################"
-        gh --version
+    args: [""]
     id: pr
     entrypoint: gh
 
