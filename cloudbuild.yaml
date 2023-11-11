@@ -31,7 +31,8 @@ steps:
     args: ['auth','login','--with-token','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']
     id: pubsub
     entrypoint: gh
-   name: ghcr.io/supportpal/github-gh-cli
+    
+  - name: ghcr.io/supportpal/github-gh-cli
     args: ['pr','diff','18']
     id: pr
     entrypoint: gh
