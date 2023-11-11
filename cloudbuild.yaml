@@ -23,14 +23,12 @@ steps:
        echo "###############################"
        echo $_CHANGED_FILES
        echo "###############################"
+       echo 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 >> ./token
+       PWD
+       ls -al
        
   - name: ghcr.io/supportpal/github-gh-cli
-    args:
-      - --vversion
-  #     - topics
-  #     - publish
-  #     - my-pubsub-topic
-  #     - '--message="hello"'
+    args: ['auth','login','--with-token','<','./token', '&&', 'gh', 'pr','diff','18']
     id: pubsub
     entrypoint: gh
     
