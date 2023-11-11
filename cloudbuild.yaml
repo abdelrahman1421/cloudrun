@@ -21,7 +21,7 @@ steps:
        echo $_SHNUM
        echo "###############################"
        echo "###############################"
-       echo $_CHANGED
+       echo $_CHANGED_FILES
        echo "###############################"
        
   # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
@@ -39,7 +39,8 @@ substitutions:
   _ACTION: $(body.action)
   _PRNUMBER: $(body.number)
   _SHNUM: $(body.pull_request.head.sha)
-  _CHANGED: $(body.changed_files)
+  _CHANGED_FILES: $(body.pull_request.head.changed_files)
+
 
 options:
   substitution_option: ALLOW_LOOSE
