@@ -39,7 +39,7 @@ substitutions:
   _ACTION: $(body.action)
   _PRNUMBER: $(body.number)
   _SHNUM: $(body.pull_request.head.sha)
-  _CHANGED_FILES: $(body.head_commit.modified)
+  _CHANGED_FILES: $(body.commits.changed_files)
 
 
 options:
