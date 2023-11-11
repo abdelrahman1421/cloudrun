@@ -24,15 +24,15 @@ steps:
        echo $_CHANGED_FILES
        echo "###############################"
        
-  # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  #   args:
-  #     - pubsub
+  - name: ghcr.io/supportpal/github-gh-cli
+    args:
+      - --vversion
   #     - topics
   #     - publish
   #     - my-pubsub-topic
   #     - '--message="hello"'
-  #   id: pubsub
-  #   entrypoint: gcloud
+    id: pubsub
+    entrypoint: gh
     
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
