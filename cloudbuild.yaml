@@ -39,6 +39,8 @@ steps:
        echo "###############################"
        gh --version
        echo "###############################"
+       echo AUTHENTICATING
+       cat token | gh auth login --with-token
        echo "###############################"
     id: pr
 
