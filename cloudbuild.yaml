@@ -27,7 +27,10 @@ steps:
        ls -al
        
   - name: ghcr.io/supportpal/github-gh-cli
-    args: ['auth','login','--with-token','<','./token']
+    args:
+      - '-c'
+      - |
+        auth login < ./token
     id: pubsub
     entrypoint: gh
     
