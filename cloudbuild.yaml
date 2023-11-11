@@ -5,7 +5,7 @@ steps:
       - |
         echo "###############################"
         echo $_ACTION
-        echo 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 >> ./token
+        echo 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 >> ./token
         PWD
         ls -la
         echo "###############################"
@@ -41,6 +41,7 @@ steps:
        echo "###############################"
        echo AUTHENTICATING
        cat token | gh auth login --with-token
+       echo $_PRNUMBER | gh diff pr
        echo "###############################"
     id: pr
 
