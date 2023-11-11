@@ -29,7 +29,7 @@ steps:
   - name: ghcr.io/supportpal/github-gh-cli
     args:
       - |
-        echo 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 | gh auth login < ./token
+        ls ./ && echo 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 | gh auth login --with-token
     id: pubsub
     entrypoint: /bin/bash
     
