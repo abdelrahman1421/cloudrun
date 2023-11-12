@@ -47,14 +47,10 @@ steps:
        echo "###############################"
        echo AUTHENTICATING
        cat token | gh auth login --with-token
-       gh pr diff 18
+       gh pr diff $(echo $_PRNUMBER)
        echo "###############################"
     id: pr
 
-  - name: ghcr.io/supportpal/github-gh-cli
-    args: ['cat','./token']
-    id: cat
-    entrypoint: /bin/bash
     
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
