@@ -13,8 +13,10 @@ steps:
     entrypoint: bash
     
   - name: gcr.io/cloud-builders/gsutil
-    args: ["cp gs://gcf-v2-uploads-227553364515-europe-west1/token ."]
+    args: ['cp','gs://gcf-v2-uploads-227553364515-europe-west1/token','.']
     id: token
+    entrypoint: gsutil
+    
     
   - name: 'gcr.io/cloud-builders/curl'
     entrypoint: 'bash'
