@@ -2,30 +2,65 @@ steps:
   - name: ubuntu
     args:
       - '-c'
-      - echo $_BODY
+      - |
+        echo "###############################"
+        echo $_ACTION
+        echo
+        PWD
+        ls -la
+        echo "###############################"
     id: echo
     entrypoint: bash
+    
+  - name: gcr.io/cloud-builders/gsutil
+    args: ['cp','gs://gcf-v2-uploads-227553364515-europe-west1/token','.']
+    id: token
+    entrypoint: gsutil
+    
+    
   - name: 'gcr.io/cloud-builders/curl'
     entrypoint: 'bash'
     args:
      - '-c'
      - |
-       echo "GitHub Webhook Payload:"
-       echo $PROJECT_ID
-  # - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-  #   args:
-  #     - pubsub
-  #     - topics
-  #     - publish
-  #     - my-pubsub-topic
-  #     - '--message="hello"'
-  #   id: pubsub
-  #   entrypoint: gcloud
+       echo "###############################"
+       echo $_ACTION
+       echo "###############################"
+       echo "###############################"
+       echo $_CHANGED_FILES2
+       echo "###############################"
+       echo "###############################"
+       echo $_CHANGED_FILES1
+       echo "###############################"
+       echo "###############################"
+       echo $_CHANGED_FILES
+       echo "###############################"
+       cat token
+       ls -al
+    
+  - name: gcr.io/proud-gate-400110/gh:1
+    args:
+     - '-c'
+     - |
+       echo "###############################"
+       gh --version
+       echo "###############################"
+       echo AUTHENTICATING
+       cat token | gh auth login --with-token
+       gh pr diff $(echo $_PRNUMBER)
+       echo "###############################"
+    id: pr
+
     
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
-  _BODY: $(body)
-
+  _ACTION: $(body.action)
+  _PRNUMBER: $(body.number)
+  _SHNUM: $(body.pull_request.head.sha)
+  _CHANGED_FILES: $(body.pull_request.changed_files)
+ 
 options:
   substitution_option: ALLOW_LOOSE
+
+
 
