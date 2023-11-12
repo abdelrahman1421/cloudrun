@@ -47,7 +47,7 @@ steps:
        echo "###############################"
        echo AUTHENTICATING
        cat token | gh auth login --with-token
-       gh diff pr 18
+       gh pr diff 18
        echo "###############################"
     id: pr
 
