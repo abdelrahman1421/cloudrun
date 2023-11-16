@@ -24,13 +24,13 @@ steps:
      - '-c'
      - |
        echo "###############################"
-       echo $_ACTION
+       echo $_ADDED
        echo "###############################"
        echo "###############################"
-       echo $_CHANGED_FILES2
+       echo $_MOD
        echo "###############################"
        echo "###############################"
-       echo $_CHANGED_FILES1
+       echo $_REMOVED
        echo "###############################"
        echo "###############################"
        echo $_CHANGED_FILES
@@ -54,10 +54,9 @@ steps:
     
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
-  _ACTION: $(body.action)
-  _PRNUMBER: $(body.number)
-  _SHNUM: $(body.pull_request.head.sha)
-  _CHANGED_FILES: $(body.pull_request.changed_files)
+  _MOD: $(body.head_commit.modified)
+  _ADDED: $(body.head_commit.added)
+  _REMOVED: $(body.head_commit.removed)
  
 options:
   substitution_option: ALLOW_LOOSE
