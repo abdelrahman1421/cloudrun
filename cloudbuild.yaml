@@ -17,7 +17,6 @@ steps:
        echo $_CHANGED_FILES
        echo "###############################"
     
-
     
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
