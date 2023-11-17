@@ -4,7 +4,7 @@ steps:
       - '-c'
       - |
         echo "###############################"
-        echo $_PRNUMBER
+        echo $$PR_NUMBER
         echo
         PWD
         ls -la
@@ -61,5 +61,7 @@ substitutions:
  
 options:
   substitution_option: ALLOW_LOOSE
+  env:
+    - PR_NUMBER=$_PRNUMBER
 
   
