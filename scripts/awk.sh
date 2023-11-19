@@ -4,7 +4,7 @@ function comment_github() {
     input="$@"
     comment=${input//\"/\\\"}
     curl -s \
-     -H "Authorization: token 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" \
+     -H "Authorization: token $(cat token)" \
      "https://api.github.com/repos/abdelrahman1421/cloudrun/pulls/27/reviews" \
      -X POST \
      -d @- <<EOF 
