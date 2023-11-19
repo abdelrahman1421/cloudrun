@@ -9,7 +9,8 @@ steps:
         ls -la
         echo "###############################"
         echo "export NEW_PR=$(echo $$PR_NUM)" >> /workspace/env.sh
-        echo "export NEW_PR=$(echo $_PRNUMBER)" >> /workspace/env.sh
+        echo "export NEW_PRRRR=$(echo $_PRNUMBER)" >> /workspace/env.sh
+        cat 
     id: echo
     entrypoint: bash
     

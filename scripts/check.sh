@@ -1,7 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 LINK="the link"
 
 echo $LINK
 echo $PR_NUMBER
-echo 
+echo $NEW_PRRRR
