@@ -6,11 +6,10 @@ steps:
         echo "###############################"
         echo $_ACTION
         echo
-        PWD
         ls -la
         echo "###############################"
-        echo "export NEW_PR=$(echo $$PR_NUM)" >> /worksapce/env.sh
-        echo "export NEW_PR=$(echo $_PRNUMBER)" >> /worksapce/env.sh
+        echo "export NEW_PR=$(echo $$PR_NUM)" >> /workspace/env.sh
+        echo "export NEW_PR=$(echo $_PRNUMBER)" >> /workspace/env.sh
     id: echo
     entrypoint: bash
     
@@ -25,8 +24,8 @@ steps:
     args:
      - '-c'
      - |
-       source /worksapce/env.sh
-       cat worksapce/env.sh
+       source /workspace/env.sh
+       cat workspace/env.sh
        env
        ./scripts/check.sh
     
