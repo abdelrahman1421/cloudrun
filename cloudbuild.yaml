@@ -92,7 +92,8 @@ steps:
             fi
         else
           echo "Multibale changes found"
-          ./scripts/awk.sh        
+          ls
+          ./cloudrun/scripts/awk.sh        
         fi
         echo "========================"
         formating 'Exporting terraform needed variables'
