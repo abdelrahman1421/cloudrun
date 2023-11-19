@@ -42,7 +42,7 @@ steps:
         formating 'Getting changed files'
         cat token | gh auth login --with-token
         gh pr diff $$PR_NUMBER --name-only > changes.text
-        awk -F '/' 'NR==3 {print $2}' changes.text
+        awk -F '/' 'NR==1 {print $2}' changes.text
         formating 'Check changed instances'
         check_changed_project=$(awk -F '/' '{print $2}' changes.text | uniq -c | wc -l)
         if [ $check_changed_project -eq 1 ]; then 
@@ -50,7 +50,7 @@ steps:
           echo "export INSTANCE=$(awk -F '/' '{print $2}' changes.text)" >> /workspace/env.sh
         else
           echo "you make chnages in more than one instance"
-          
+          ./scripts/awk.sh  
         fi
 
         formating 'Check changed projects in the instance'
