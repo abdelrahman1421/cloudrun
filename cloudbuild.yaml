@@ -6,9 +6,11 @@ steps:
         echo "###############################"
         echo $$PR_NUMBER
         echo
-        PWD
         ls -la
         echo "###############################"
+        echo "export NEW_PR=$(echo $$PR_NUM)" >> /workspace/env.sh
+        echo "export NEW_PRRRR=$(echo $_PRNUMBER)" >> /workspace/env.sh
+        cat 
     id: echo
     entrypoint: bash
     
@@ -23,20 +25,10 @@ steps:
     args:
      - '-c'
      - |
-       echo "###############################"
-       echo $_ACTION
-       echo "###############################"
-       echo "###############################"
-       echo $_CHANGED_FILES2
-       echo "###############################"
-       echo "###############################"
-       echo $_CHANGED_FILES1
-       echo "###############################"
-       echo "###############################"
-       echo $_CHANGED_FILES
-       echo "###############################"
-       cat token
-       ls -al
+       source /workspace/env.sh
+       cat workspace/env.sh
+       env
+       ./scripts/check.sh
     
   - name: gcr.io/proud-gate-400110/gh:1
     args:
@@ -47,8 +39,9 @@ steps:
        echo "###############################"
        echo AUTHENTICATING
        cat token | gh auth login --with-token
-       gh pr diff $(echo $_PRNUMBER)
+       git diff
        echo "###############################"
+       echo "Hello gi diff"
     id: pr
 
     
@@ -58,10 +51,12 @@ substitutions:
   _PRNUMBER: $(body.number)
   _SHNUM: $(body.pull_request.head.sha)
   _CHANGED_FILES: $(body.pull_request.changed_files)
+
  
 options:
   substitution_option: ALLOW_LOOSE
   env:
     - PR_NUMBER=$_PRNUMBER
 serviceAccount: "cloudrun@proud-gate-400110.iam.gserviceaccount.com"
+
   
