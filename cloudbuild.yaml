@@ -39,7 +39,7 @@ steps:
        echo "###############################"
        echo AUTHENTICATING
        cat token | gh auth login --with-token
-       gh pr diff $(echo $_PRNUMBER)
+       git diff
        echo "###############################"
        echo "Hello gi diff"
     id: pr
