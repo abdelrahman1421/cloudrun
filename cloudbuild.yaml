@@ -38,7 +38,8 @@ steps:
         . /workspace/env.sh
         echo "========================"
         echo $$PR_NUMBER
-
+        formating "echo changes files"
+        cat changes.text
         formating 'Getting changed files'
         cat token | gh auth login --with-token
         gh pr diff $$PR_NUMBER --name-only > changes.text
