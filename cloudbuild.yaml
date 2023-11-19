@@ -40,7 +40,7 @@ steps:
         echo $$PR_NUMBER
 
         formating 'Getting changed files'
-        cat cf | gh auth login --hostname github.vodafone.com --with-token
+        cat token | gh auth login --hostname github.vodafone.com --with-token
         gh pr diff $$PR_NUMBER --name-only > changes.text
         awk -F '/' 'NR==3 {print $2}' changes.text
         formating 'Check changed instances'
