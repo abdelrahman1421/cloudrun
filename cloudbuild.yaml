@@ -4,7 +4,7 @@ steps:
       - '-c'
       - |
         echo "###############################"
-        echo $_ACTION
+        echo $$PR_NUMBER
         echo
         ls -la
         echo "###############################"
@@ -56,9 +56,7 @@ substitutions:
 options:
   substitution_option: ALLOW_LOOSE
   env:
-  - PR_NUMBER=$_PRNUMBER
+    - PR_NUMBER=$_PRNUMBER
+serviceAccount: "cloudrun@proud-gate-400110.iam.gserviceaccount.com"
 
   
-
-
-
