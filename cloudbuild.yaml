@@ -9,7 +9,7 @@ steps:
         PWD
         ls -la
         echo "###############################"
-        echo "export NEW_PR=$(echo $PR_NUM)" >> /worksapce/env.sh
+        echo "export NEW_PR=$(echo $$PR_NUM)" >> /worksapce/env.sh
         echo "export NEW_PR=$(echo $_PRNUMBER)" >> /worksapce/env.sh
     id: echo
     entrypoint: bash
