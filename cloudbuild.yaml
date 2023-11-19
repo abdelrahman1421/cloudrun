@@ -114,5 +114,3 @@ options:
   env:
     - PR_NUMBER=$_PRNUMBER
 serviceAccount: "cloudrun@proud-gate-400110.iam.gserviceaccount.com"
-
-  
