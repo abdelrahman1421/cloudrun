@@ -18,31 +18,87 @@ steps:
     args: ['cp','gs://gcf-v2-uploads-227553364515-europe-west1/token','.']
     id: token
     entrypoint: gsutil
-    
-    
-  - name: 'gcr.io/cloud-builders/curl'
-    entrypoint: 'bash'
+            
+  - id: changes
+    name: gcr.io/proud-gate-400110/gh:1
+    entrypoint: /bin/bash
     args:
-     - '-c'
-     - |
-       source /workspace/env.sh
-       cat workspace/env.sh
-       env
-       ./scripts/check.sh
-    
-  - name: gcr.io/proud-gate-400110/gh:1
-    args:
-     - '-c'
-     - |
-       echo "###############################"
-       gh --version
-       echo "###############################"
-       echo AUTHENTICATING
-       cat token | gh auth login --with-token
-       git diff
-       echo "###############################"
-       echo "Hello gi diff"
-    id: pr
+      - -c
+      - |
+        . /workspace/env.sh
+        envExporter(){
+          echo "$1" >> /workspace/env.sh
+        }
+        formating() {
+          msg=$1
+          echo "###################################"
+          echo $msg
+          echo "###################################"
+        }
+        . /workspace/env.sh
+        echo "========================"
+        echo $$PR_NUMBER
+
+        formating 'Getting changed files'
+        cat cf | gh auth login --hostname github.vodafone.com --with-token
+        gh pr diff $$PR_NUMBER --name-only > changes.text
+        awk -F '/' 'NR==3 {print $2}' changes.text
+        formating 'Check changed instances'
+        check_changed_project=$(awk -F '/' '{print $2}' changes.text | uniq -c | wc -l)
+        if [ $check_changed_project -eq 1 ]; then 
+          echo "one chnaged project"
+          echo "export INSTANCE=$(awk -F '/' '{print $2}' changes.text)" >> /workspace/env.sh
+        else
+          echo "you make chnages in more than one instance"
+          
+        fi
+
+        formating 'Check changed projects in the instance'
+        pr_chnages="changes.text"
+        check_live=$(grep -cw 'live' "$pr_chnages")
+        check_nl=$(grep -cw 'nonlive' "$pr_chnages")
+        check_lab=$(grep -cw 'lab' "$pr_chnages")
+        cat changes.text
+        echo "========================"
+        if [ $check_live -eq 0 ]; then
+            check_live=0
+        else
+            check_live=1
+        fi
+        if [ $check_nl -eq 0 ]; then
+            check_nl=0
+        else
+            check_nl=1
+        fi
+        if [ $check_lab -eq 0 ]; then
+            check_lab=0
+        else
+            check_lab=1
+        fi
+        echo "========================"
+        
+        echo $check_live
+        echo $check_nl
+        echo $check_lab
+        all_checks=$((check_live + check_nl + check_lab))
+        echo "========================"
+        if [ $all_checks -eq 1 ]; then
+            if [ $check_live -eq 1 ]; then
+                envExporter "export TF_VAR_env_sub_folder=live"
+            elif [ $check_nl -eq 1 ]; then
+                envExporter "export TF_VAR_env_sub_folder=nl"
+            elif [ $check_lab -eq 1 ]; then
+                envExporter "export TF_VAR_env_sub_folder=lab"
+            fi
+        else
+          echo "Multibale changes found"
+          ./scripts/awk.sh        
+        fi
+        echo "========================"
+        formating 'Exporting terraform needed variables'
+        envExporter "export TF_VAR_env="dev"" >> /workspace/env.sh
+        envExporter "export TF_VAR_env_folder="beta"" >> /workspace/env.sh
+        echo "export INSTANCE=$(awk -F '/' 'NR==3 {print $2}' changes.text)" >> /workspace/env.sh
 
     
 logsBucket: 'gs://proud-gate-400110-logging'
