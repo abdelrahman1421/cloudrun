@@ -9,6 +9,12 @@ steps:
         echo $$DEL
         echo "###############################"
         echo $$ADD
+        echo "###############################"
+        echo $$NMOD
+        echo "###############################"
+        echo $$NDEL
+        echo "###############################"
+        echo $$NADD
 
 
     id: echo
@@ -20,6 +26,9 @@ substitutions:
   _MOD: $(body.head_commit.modified)
   _ADD: $(body.head_commit.added)
   _DEL: $(body.head_commit.removed)
+  _NADD: $(body.commits.added)
+  _NDEL: $(body.commits.removed)
+  _NMOD: $(body.commits.modified)
  
 options:
   substitution_option: ALLOW_LOOSE
@@ -28,4 +37,7 @@ options:
     - ADD=$_ADD
     - DEL=$_DEL
     - MOD=$_MOD
+    - NADD=$_NADD
+    - NDEL=$_NDEL
+    - NMOD=$_NMOD
 serviceAccount: 'cloudrun@proud-gate-400110.iam.gserviceaccount.com'
