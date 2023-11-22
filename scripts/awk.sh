@@ -13,3 +13,18 @@ EOF
      
 }
 comment_github "Not supported ya man"
+
+function print_new() {
+    # set -x
+    local event=$1
+    shift
+    local msg="$@"
+    echo $event
+    echo $msg
+}
+echo $zeta
+if git diff origin/master...  --name-only | grep "hgh"; then
+    echo "chnaged"
+else
+    echo "no"
+fi
