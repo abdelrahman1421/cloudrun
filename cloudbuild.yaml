@@ -9,7 +9,8 @@ steps:
         ls -la
         echo "###############################"
         echo "export NEW_PR=$(echo $$PR_NUM)" >> /workspace/env.sh
-        echo "export NEW_PRRRR=$(echo $_PRNUMBER)" >> /workspace/env.sh
+        echo "export NEW_PRRRR=$(echo $_PRNUMBER)" >> /workspace/env.s
+        echo $$CHANGED
         cat 
     id: echo
     entrypoint: bash
@@ -114,4 +115,5 @@ options:
   substitution_option: ALLOW_LOOSE
   env:
     - PR_NUMBER=$_PRNUMBER
+    - CHANGED=$_CHANGED_FILES
 serviceAccount: 'cloudrun@proud-gate-400110.iam.gserviceaccount.com'
