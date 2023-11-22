@@ -15,6 +15,9 @@ steps:
         echo $$BEF
         echo "###############################"
         echo $$BREF
+        echo "###############################"
+        echo $$NMOD
+        echo "###############################"
 
 
 
@@ -29,7 +32,7 @@ substitutions:
   _DEL: $(body.head_commit.removed)
   # _NADD: $(body.commits.added)
   # _NDEL: $(body.commits.removed)
-  # _NMOD: $(body.commits.modified)
+  _NMOD: $(body.commits.id)
   _BEF: $(body.before)
   _BREF: $(body.base_ref)
  
@@ -42,7 +45,7 @@ options:
     - MOD=$_MOD
     # - NADD=$_NADD
     # - NDEL=$_NDEL
-    # - NMOD=$_NMOD
+    - NMOD=$_NMOD
     - BEF=$_BEF
     - BREF=$_BREF
 serviceAccount: 'cloudrun@proud-gate-400110.iam.gserviceaccount.com'
