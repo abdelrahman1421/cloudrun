@@ -4,48 +4,28 @@ steps:
       - '-c'
       - |
         echo "###############################"
+        echo MOD
         echo $$MOD
         echo "###############################"
+        echo DEL
         echo $$DEL
         echo "###############################"
+        echo ADD
         echo $$ADD
         echo "###############################"
-
-        echo "###############################"
-        echo $$BEF
-        echo "###############################"
-        echo $$BREF
-        echo "###############################"
-        echo $$NMOD
-        echo "###############################"
-
-
-
     id: echo
     entrypoint: bash
 
 
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
-  _MOD: $(body.head_commit.modified)
-  _ADD: $(body.head_commit.added)
-  _DEL: $(body.head_commit.removed)
-  # _NADD: $(body.commits.added)
-  # _NDEL: $(body.commits.removed)
-  _NMOD: $(body.commits)
-  _BEF: $(body.commits[0].id)
-  _BREF: $(body.base_ref)
- 
+  _MOD: $(body.commits[0].chnaged)
+  _ADD: $(body.commits[0].added)
+  _DEL: $(body.commits[0].removed)
 options:
   substitution_option: ALLOW_LOOSE
   env:
-    - PR_NUMBER=$_PRNUMBER
     - ADD=$_ADD
     - DEL=$_DEL
     - MOD=$_MOD
-    # - NADD=$_NADD
-    # - NDEL=$_NDEL
-    - NMOD=$_NMOD
-    - BEF=$_BEF
-    - BREF=$_BREF
 serviceAccount: 'cloudrun@proud-gate-400110.iam.gserviceaccount.com'
