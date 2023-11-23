@@ -44,5 +44,6 @@ options:
     - HADD=$_HADD
     - HDEL=$_HDEL
     - HMOD=$_HMOD
+    - NEW="dsdsd"
 serviceAccount: 'cloudrun@proud-gate-400110.iam.gserviceaccount.com'
 
