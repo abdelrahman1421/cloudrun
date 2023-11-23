@@ -19,7 +19,7 @@ steps:
 
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
-  _MOD: $(body.commits[0].chnaged)
+  _MOD: $(body.commits[0].modified)
   _ADD: $(body.commits[0].added)
   _DEL: $(body.commits[0].removed)
 options:
