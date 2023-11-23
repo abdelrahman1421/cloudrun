@@ -13,6 +13,15 @@ steps:
         echo ADD
         echo $$ADD
         echo "###############################"
+        echo HMOD
+        echo $$HMOD
+        echo "###############################"
+        echo HDEL
+        echo $$HDEL
+        echo "###############################"
+        echo HADD
+        echo $$HADD
+        echo "###############################"
     id: echo
     entrypoint: bash
 
@@ -22,10 +31,16 @@ substitutions:
   _MOD: $(body.commits[0].modified)
   _ADD: $(body.commits[0].added)
   _DEL: $(body.commits[0].removed)
+  _HMOD: $(body.head_commit.modified)
+  _HADD: $(body.head_commit.added)
+  _HDEL: $(body.head_commit.removed)
 options:
   substitution_option: ALLOW_LOOSE
   env:
     - ADD=$_ADD
     - DEL=$_DEL
     - MOD=$_MOD
+    - HADD=$_HADD
+    - HDEL=$_HDEL
+    - HMOD=$_HMOD
 serviceAccount: 'cloudrun@proud-gate-400110.iam.gserviceaccount.com'
