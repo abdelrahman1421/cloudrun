@@ -34,6 +34,7 @@ substitutions:
   _HMOD: $(body.head_commit.modified)
   _HADD: $(body.head_commit.added)
   _HDEL: $(body.head_commit.removed)
+
 options:
   substitution_option: ALLOW_LOOSE
   env:
