@@ -45,4 +45,3 @@ options:
     - HDEL=$_HDEL
     - HMOD=$_HMOD
 serviceAccount: 'cloudrun@proud-gate-400110.iam.gserviceaccount.com'
-
