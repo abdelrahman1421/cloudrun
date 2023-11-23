@@ -33,7 +33,7 @@ substitutions:
   # _NADD: $(body.commits.added)
   # _NDEL: $(body.commits.removed)
   _NMOD: $(body.commits)
-  _BEF: $(body.before)
+  _BEF: $(body.commits[0].id)
   _BREF: $(body.base_ref)
  
 options:
