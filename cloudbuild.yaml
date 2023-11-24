@@ -102,7 +102,7 @@ steps:
         envExporter "export TF_VAR_env_folder="beta"" >> /workspace/env.sh
         echo "export INSTANCE=$(awk -F '/' 'NR==3 {print $2}' changes.text)" >> /workspace/env.sh
 
-    
+      
 logsBucket: 'gs://proud-gate-400110-logging'
 substitutions:
   _ACTION: $(body.action)
