@@ -118,5 +118,3 @@ options:
     - CHANGED=$_CHANGED_FILES
     - NE="dsdsdsdsd"
 serviceAccount: 'cloudrun@proud-gate-400110.iam.gserviceaccount.com'
-
-
