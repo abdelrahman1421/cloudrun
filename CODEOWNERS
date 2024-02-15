@@ -1,1 +1,2 @@
-beta/**  @eng-boda
+beta/*  @eng-boda
+beta/hello/*  @eng-boda
